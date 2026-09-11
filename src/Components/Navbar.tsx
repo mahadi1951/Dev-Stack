@@ -24,16 +24,26 @@ const Navbar = () => {
                 />{" "}
               </svg>
             </div>
-            <img className="lg:hidden" src={logo} alt="Logo" />
+            <img className="lg:hidden " src={logo} alt="Logo" />
             <ul
               tabIndex={-1}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-2 mt-20 w-52 p-2 shadow font-semibold"
             >
-              <li>Home</li>
-              <li>Technology</li>
-              <li>Project</li>
-              <li>About</li>
-              <li>Contact</li>
+              <li className="text-[#e63886]">
+                <a href="#">Home</a>
+              </li>
+              <li>
+                <a href="#">Technology</a>
+              </li>
+              <li>
+                <a href="#">Project</a>
+              </li>
+              <li>
+                <a href="#">About</a>
+              </li>
+              <li>
+                <a href="#">Contact</a>
+              </li>
             </ul>
           </div>
           <img src={logo} alt="Logo" className="hidden lg:flex" />
