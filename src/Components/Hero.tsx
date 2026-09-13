@@ -2,7 +2,7 @@ import heroImg from "../assets/banner-stack.png";
 
 const Hero = () => {
   return (
-    <div className="hero container mx-auto flex flex-col-reverse lg:flex-row items-center gap-5 md:gap-10 lg:gap-20 px-4 md:px-8 lg:px-0 py-8 md:py-12 lg:py-10">
+    <div className="hero container mx-auto flex flex-col lg:flex-row items-center gap-5 md:gap-10 lg:gap-20 px-4 md:px-4 lg:px-3 py-4 md:py-12 lg:py-4">
       <div className="w-full lg:w-1/2">
         <h1 className="text-4xl md:text-5xl lg:text-[60px] font-extrabold mb-2 leading-tight">
           Build Your Ideal <br />

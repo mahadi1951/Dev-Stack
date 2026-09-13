@@ -16,7 +16,7 @@ const TechnologyCard = ({ data, stack, onAdd }: TechnologyCardProps) => {
         return (
           <div
             key={tech.id}
-            className={`rounded-2xl p-[1px] transition-all duration-300 ${
+            className={`rounded-2xl p-[1px]  transition-all duration-300 hover:scale-[1.03] hover:shadow-lg ${
               isAdded
                 ? "bg-gradient-to-r from-[#9F62F2] via-[#632EE3] to-[#EC4899]"
                 : "border border-gray-200"
@@ -46,17 +46,13 @@ const TechnologyCard = ({ data, stack, onAdd }: TechnologyCardProps) => {
 
               {/* Bottom */}
               <div>
-                {/* Info */}  
+                {/* Info */}
                 <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                  
-                    <span className="bg-gray-100 px-2 py-1 rounded">
-                      {tech.category}
-                    </span>
+                  <span className="bg-gray-100 px-2 py-1 rounded">
+                    {tech.category}
+                  </span>
 
-                    <span className=" ">
-                      {tech.difficulty}
-                    </span>
-                  
+                  <span className=" ">{tech.difficulty}</span>
 
                   <span className="font-semibold text-amber-500">
                     ★ {tech.rating}
