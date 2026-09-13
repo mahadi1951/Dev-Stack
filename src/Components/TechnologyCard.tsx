@@ -48,15 +48,15 @@ const TechnologyCard = ({ data, stack, onAdd }: TechnologyCardProps) => {
               <div>
                 {/* Info */}  
                 <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                  <div className="flex items-center gap-2">
+                  
                     <span className="bg-gray-100 px-2 py-1 rounded">
                       {tech.category}
                     </span>
 
-                    <span className="bg-gray-100 px-2 py-1 rounded">
+                    <span className=" ">
                       {tech.difficulty}
                     </span>
-                  </div>
+                  
 
                   <span className="font-semibold text-amber-500">
                     ★ {tech.rating}
