@@ -1,13 +1,21 @@
+import { Suspense } from "react";
 import "./App.css";
 import Hero from "./Components/Hero";
 import Navbar from "./Components/Navbar";
+import TechnologyGrid from "./Components/TechnologyGrid";
+
+const technologiesPromise = fetch("/TechnologyData.json")
+.then((res) => res.
+json());
 
 function App() {
   return (
     <>
       <Navbar />
       <Hero />
-
+    <Suspense fallback={<span className="loading loading-dots loading-xl"></span>}>
+      <TechnologyGrid  technologiesPromise={technologiesPromise} />
+    </Suspense>
       
     </>
   );
