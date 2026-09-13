@@ -1,5 +1,6 @@
 import React, { use, useState } from "react";
 import TechnologyCard from "../Components/TechnologyCard";
+import { toast } from "react-toastify";
 type Technology = {
   id: number;
   name: string;
@@ -18,6 +19,17 @@ type TechnologyGridProps = {
 const TechnologyGrid = ({ technologiesPromise }: TechnologyGridProps) => {
   const data = use(technologiesPromise);
 
+  const [stack, setStack] = useState<Technology[]>([]);
+
+  const handleAddToStack = (technology: Technology) => {
+    // Check if the technology is already in the stack
+    setStack((prev) => [...prev, technology]);
+    toast.success(`${technology.name} added to your stack!`, {
+      position: "top-right",
+      autoClose: 3000,
+    });
+  };
+
   return (
     <div className="technology-grid container mx-auto py-10">
       {/* Heading */}
@@ -35,7 +47,10 @@ const TechnologyGrid = ({ technologiesPromise }: TechnologyGridProps) => {
       <div className="grid grid-cols-9 gap-4 mt-4">
         {/* Technology Cards */}
         <div className="col-span-7">
-          <TechnologyCard data={data} />
+          <TechnologyCard data={data}
+           stack={stack}
+           onAdd={handleAddToStack}
+          />
         </div>
 
         {/* Your Stack */}
@@ -43,7 +58,7 @@ const TechnologyGrid = ({ technologiesPromise }: TechnologyGridProps) => {
           <div className=" mb-4">
             <h2 className="text-xl font-bold">Your Stack</h2>
 
-            <button className="text-xs text-red-500 hover:text-red-700 font-medium flex items-center mt-2">
+            <button className="text-xs text-red-500 hover:text-red-700 font-medium flex justify-center items-center mt-2">
               Remove All
             </button>
           </div>
