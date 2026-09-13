@@ -1,13 +1,5 @@
-type Technology = {
-  id: number;
-  name: string;
-  category: string;
-  description: string;
-  icon: string;
-  rating: number;
-  difficulty: string;
-  badge: string;
-};
+import Badge from "./Badge";
+import type { Technology } from "../Components/types/technology";
 
 type TechnologyCardProps = {
   data: Technology[];
@@ -17,75 +9,73 @@ type TechnologyCardProps = {
 
 const TechnologyCard = ({ data, stack, onAdd }: TechnologyCardProps) => {
   return (
-    <div className="grid grid-cols-3 gap-5">
-      {data.map((technology) => {
-        const isAdded = stack.some((item) => item.id === technology.id);
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {data.map((tech) => {
+        const isAdded = stack.some((item) => item.id === tech.id);
 
         return (
           <div
-            key={technology.id}
-            className={`rounded-xl p-[1px] transition-all duration-300 ${
+            key={tech.id}
+            className={`rounded-2xl p-[1px] transition-all duration-300 ${
               isAdded
                 ? "bg-gradient-to-r from-[#9F62F2] via-[#632EE3] to-[#EC4899]"
-                : "bg-transparent"
+                : "border border-gray-200"
             }`}
           >
-            <div
-              className={`rounded-[11px] p-4 bg-white shadow-sm h-full ${
-                !isAdded ? "border border-gray-200" : ""
-              }`}
-            >
-              {/* Icon + Badge */}
-              <div className="flex items-center justify-between">
-                <img
-                  src={technology.icon}
-                  alt={technology.name}
-                  className="w-7 h-7 object-contain"
-                />
+            <div className="rounded-[15px] p-5 bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-full">
+              {/* Header */}
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <img
+                    src={tech.icon}
+                    alt={tech.name}
+                    className="w-10 h-10 object-contain"
+                  />
 
-                <span className="text-[10px] text-blue-500 bg-blue-50 px-3 py-1 rounded-full">
-                  {technology.badge}
-                </span>
+                  {tech.badge && <Badge badge={tech.badge} />}
+                </div>
+
+                {/* Title */}
+                <h3 className="text-lg font-bold text-gray-800">{tech.name}</h3>
+
+                {/* Description */}
+                <p className="text-gray-500 text-sm mt-1 mb-4 line-clamp-2">
+                  {tech.description}
+                </p>
               </div>
 
-              {/* Name */}
-              <h2 className="text-[15px] font-bold text-gray-900 mt-5">
-                {technology.name}
-              </h2>
+              {/* Bottom */}
+              <div>
+                {/* Info */}  
+                <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="bg-gray-100 px-2 py-1 rounded">
+                      {tech.category}
+                    </span>
 
-              {/* Description */}
-              <p className="text-[10px] leading-4 text-gray-500 mt-2 min-h-[48px]">
-                {technology.description}
-              </p>
+                    <span className="bg-gray-100 px-2 py-1 rounded">
+                      {tech.difficulty}
+                    </span>
+                  </div>
 
-              {/* Information */}
-              <div className="flex items-center justify-between mt-4 gap-2">
-                <span className="text-[9px] text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                  {technology.category}
-                </span>
+                  <span className="font-semibold text-amber-500">
+                    ★ {tech.rating}
+                  </span>
+                </div>
 
-                <span className="text-[9px] text-gray-500">
-                  {technology.difficulty}
-                </span>
-
-                <span className="text-[10px] text-gray-600 flex items-center gap-1">
-                  <span className="text-yellow-500">★</span>
-                  {technology.rating}
-                </span>
+                {/* Button */}
+                <button
+                  disabled={isAdded}
+                  onClick={() => onAdd(tech)}
+                  className={`w-full py-2 rounded-xl text-sm font-medium transition-colors ${
+                    isAdded
+                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                      : "bg-black text-white hover:bg-gray-800 cursor-pointer"
+                  }`}
+                >
+                  {isAdded ? "Added to Stack" : "Add to Stack"}
+                </button>
               </div>
-
-              {/* Add Button */}
-              <button
-                onClick={() => onAdd(technology)}
-                disabled={isAdded}
-                className={`w-full text-white text-[10px] py-2 rounded-md mt-4 transition ${
-                  isAdded
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-[#080d1b] hover:bg-gray-800"
-                }`}
-              >
-                {isAdded ? "Added to Stack" : "Add to Stack"}
-              </button>
             </div>
           </div>
         );
