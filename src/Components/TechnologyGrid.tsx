@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import TechnologyCard from "../Components/TechnologyCard";
 type Technology = {
   id: number;
@@ -17,8 +17,6 @@ type TechnologyGridProps = {
 
 const TechnologyGrid = ({ technologiesPromise }: TechnologyGridProps) => {
   const data = use(technologiesPromise);
-
-  console.log(data);
 
   return (
     <div className="technology-grid container mx-auto py-10">
@@ -42,10 +40,10 @@ const TechnologyGrid = ({ technologiesPromise }: TechnologyGridProps) => {
 
         {/* Your Stack */}
         <div className="col-span-2 sticky top-0 z-50">
-          <div className="flex items-center justify-between mb-4">
+          <div className=" mb-4">
             <h2 className="text-xl font-bold">Your Stack</h2>
 
-            <button className="text-xs text-red-500 hover:text-red-700 font-medium">
+            <button className="text-xs text-red-500 hover:text-red-700 font-medium flex items-center mt-2">
               Remove All
             </button>
           </div>
